@@ -146,14 +146,13 @@ def main():
     # 先找必须填的
     numtable = get_numtable(puzzle, mark)
     l = find_must(numtable)
-    print(l)
+    # print(l)
     while l:
         p = l.pop()
         # 存在，填入，进栈（其实无所谓）
         i,j,k = p
         puzzle[i][j] = k
         stack.append(p)
-    print_puzzle(puzzle)
     # 再暴力列举
     while True:
         numtable = get_numtable(puzzle, mark)

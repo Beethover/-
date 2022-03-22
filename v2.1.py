@@ -30,14 +30,16 @@ def readin(path):
     with open(path) as f:
         lines = f.read().split('\n')
         for line in lines:
-            if line:
-                p = [int(x) for x in input().split()]
+            p = [int(x) for x in line.split()]
+            if p:
                 puzzle.append(p)
             else:
                 puzzles.append(puzzle)
                 puzzle = []
+        if puzzle:
+            puzzles.append(puzzle)
     return puzzles
-        
+
 def possible(i,j,puzzle,mark):
     # 对于给定数据表，找出（i，j）可能的数字
     # （i，j）位于第（m，n）个宫内
@@ -142,16 +144,17 @@ def print_puzzle(puzzle):
 
 def main():
     # 主程序
-    # 用来记录操作的栈，元素（i，j，填入的数字k）
-    stack = []
-    # 用来记录被排除的数字
-    mark = [[[0]for _ in range(9)]for _ in range(9)]
     # 读入数独
     path = input('请输入数独文件的绝对路径：')
     puzzles = readin(path)
     
     for puzzle in puzzles:
             
+        # 用来记录操作的栈，元素（i，j，填入的数字k）
+        stack = []
+        # 用来记录被排除的数字
+        mark = [[[0]for _ in range(9)]for _ in range(9)]
+        
         # 计时模组
         s = time.time()
         

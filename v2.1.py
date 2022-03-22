@@ -28,7 +28,7 @@ def readin(path):
     # 返回9*9列表puzzle
     puzzles = [] ; puzzle = []
     with open(path) as f:
-        lines = f.read().split('\n')
+        lines = f.readlines()
         for line in lines:
             p = [int(x) for x in line.split()]
             if p:
@@ -149,7 +149,9 @@ def main():
     puzzles = readin(path)
     
     for puzzle in puzzles:
-            
+        if puzzle == []:
+            continue
+        
         # 用来记录操作的栈，元素（i，j，填入的数字k）
         stack = []
         # 用来记录被排除的数字
